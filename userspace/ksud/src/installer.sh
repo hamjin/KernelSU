@@ -345,7 +345,7 @@ handle_partition() {
         return;
     fi
 
-    if [ "$REQUIRE_SYMLINK" = "false" ] || [ -L "/system/$PARTITION" ] && [ "$(readlink -f "/system/$PARTITION")" = "/$PARTITION" ]; then
+    if [ "$REQUIRE_SYMLINK" = "false" ] || { [ -L "/system/$PARTITION" ] && [ "$(readlink -f "/system/$PARTITION")" = "/$PARTITION" ]; }; then
         ui_print "- Handle partition /$PARTITION"
         ln -sf "./system/$PARTITION" "$MODPATH/$PARTITION"
     fi
